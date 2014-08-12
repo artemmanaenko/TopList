@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TopList Djent</string>
+    <string name="left_menu_home">Home</string>
+    <string name="left_menu_favorites">Favorites</string>
+    <string name="left_menu_send_your_list">Send your list</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
