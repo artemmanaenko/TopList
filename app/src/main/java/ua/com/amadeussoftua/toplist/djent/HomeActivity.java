@@ -22,13 +22,15 @@ public class HomeActivity extends ActionBarActivity implements LeftMenuFragment.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Backendless.setUrl(Defaults.SERVER_URL);
+        Backendless.initApp(getBaseContext(), Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION);
+
         leftMenuFragment = (LeftMenuFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         actionBarTitle = getTitle();
         fragmentMediator = new FragmentMediator(this);
-
-        Backendless.setUrl(Defaults.SERVER_URL);
-        Backendless.initApp( getBaseContext(), Defaults.APPLICATION_ID, Defaults.SECRET_KEY, Defaults.VERSION );
+        fragmentMediator.showHomeFragment();
     }
 
     @Override
