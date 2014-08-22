@@ -20,8 +20,10 @@ android {
 }
 
 dependencies {
+    compile 'com.squareup.picasso:picasso:2.3.3'
+    compile files('libs/backendless.jar')
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.j256.ormlite:ormlite-android:4.46'
-    compile files('libs/backendless.jar')
+    compile 'de.greenrobot:eventbus:2.2.1'
 }

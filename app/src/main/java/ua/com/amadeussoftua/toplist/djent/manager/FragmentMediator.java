@@ -1,5 +1,6 @@
 package ua.com.amadeussoftua.toplist.djent.manager;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import ua.com.amadeussoftua.toplist.djent.R;
 import ua.com.amadeussoftua.toplist.djent.fragment.FavoritesFragment;
 import ua.com.amadeussoftua.toplist.djent.fragment.HomePageFragment;
+import ua.com.amadeussoftua.toplist.djent.fragment.SearchPlayListFragment;
 import ua.com.amadeussoftua.toplist.djent.fragment.SendPlaylistFragment;
 
 /**
@@ -34,12 +36,20 @@ public class FragmentMediator {
         showChapterFragment(new HomePageFragment());
     }
 
-    public void showFavorites(){
+    public void showFavorites() {
         showChapterFragment(new FavoritesFragment());
     }
 
-    public void showSendPlaylist(){
+    public void showSendPlaylist() {
         showChapterFragment(new SendPlaylistFragment());
+    }
+
+    public void showSearchPlayList(String searchQuery) {
+        SearchPlayListFragment fragment = new SearchPlayListFragment();
+        Bundle arguments = new Bundle();
+        arguments.putString(SearchPlayListFragment.KEY_SEARCH_QUERY, searchQuery);
+        fragment.setArguments(arguments);
+        showChapterFragment(fragment);
     }
 
 }

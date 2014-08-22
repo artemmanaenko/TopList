@@ -7,7 +7,12 @@ import java.util.Date;
 
 @DatabaseTable(tableName = "playlists")
 public class Playlist {
+
+    public static final String COLUMN_NAME_EN = "name_en";
+
     @DatabaseField(id = true)
+    private int id;
+    @DatabaseField()
     private String objectId;
     @DatabaseField
     private Date updated;
@@ -18,7 +23,9 @@ public class Playlist {
     @DatabaseField
     private Integer listeners;
     @DatabaseField
-    private Integer rate;
+    private Integer likes;
+    @DatabaseField
+    private Integer dislikes;
     @DatabaseField
     private Date created;
     @DatabaseField
@@ -29,11 +36,15 @@ public class Playlist {
     public Playlist() {
     }
 
+    public int getId() {
+        return id;
+    }
+
     public java.util.Date getUpdated() {
         return updated;
     }
 
-    public String getImage_url() {
+    public String getImageUrl() {
         return image_url;
     }
 
@@ -61,12 +72,8 @@ public class Playlist {
         this.listeners = listeners;
     }
 
-    public Integer getRate() {
-        return rate;
-    }
-
-    public void setRate(Integer rate) {
-        this.rate = rate;
+    public float getRate() {
+        return (float) likes/(float)dislikes;
     }
 
     public java.util.Date getCreated() {

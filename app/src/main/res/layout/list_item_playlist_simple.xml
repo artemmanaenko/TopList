@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/card">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ua.com.amadeussoftua.toplist.djent.widget.SquareImageView
+            android:id="@+id/playlist_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@android:drawable/star_on"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/playlist_name"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textSize="@dimen/H4"
+        android:textColor="@color/TextView.Default"
+        android:paddingLeft="@dimen/Padding.Widget"
+        android:paddingRight="@dimen/Padding.Widget"
+        android:singleLine="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_controls_panel_height"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_margin="@dimen/Padding.Widget">
+
+        <ImageView
+            android:id="@+id/button_like"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_item_like"/>
+
+        <ImageView
+            android:id="@+id/button_dislike"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_item_dislike"/>
+
+        <ImageView
+            android:id="@+id/button_menu"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:scaleType="fitEnd"
+            android:src="@drawable/ic_item_menu"/>
+
+    </LinearLayout>
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/rating_bar_rate"
+        android:layout_gravity="center_vertical"
+        android:numStars="5"
+        android:rating="4"
+        android:isIndicator="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBaseline="@+id/listeners_count"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/Padding.Widget"
+        android:visibility="gone">
+
+
+
+        <TextView
+            android:id="@+id/listeners_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_listeners_count"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</LinearLayout>

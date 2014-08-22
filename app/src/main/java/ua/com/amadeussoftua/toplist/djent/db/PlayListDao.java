@@ -3,9 +3,13 @@ package ua.com.amadeussoftua.toplist.djent.db;
 import android.content.Context;
 
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.support.DatabaseConnection;
 
+import java.sql.SQLException;
+import java.sql.Savepoint;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import ua.com.amadeussoftua.toplist.djent.TopListApplication;
 import ua.com.amadeussoftua.toplist.djent.model.Playlist;
@@ -24,18 +28,42 @@ public class PlayListDao {
     }
 
     public void setIncomingData(final List<Playlist> playLists) {
-        playListDao.callBatchTasks(new Callable<Void>() {
-            public Void call() throws Exception {
-                insertOrUpdate(playLists);
-                return null;
-            }
-        });
+        DatabaseConnection conn = playListDao.startThreadConnection();
+        Savepoint savePoint = null;
+        try {
+            savePoint = conn.setSavePoint(null);
+            insertOrUpdate(playLists);
+            conn.commit(savePoint);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            playListDao.endThreadConnection(conn);
+        }
     }
 
     private void insertOrUpdate(final List<Playlist> playLists) {
         for (Playlist list : playLists) {
             playListDao.createOrUpdate(list);
         }
+    }
+
+    public QueryBuilder<Playlist, Integer> getQueryBuilder() {
+        return playListDao.queryBuilder();
+    }
+
+    public List<Playlist> requestSearchWithSort(String searchQuery) {
+        QueryBuilder<Playlist, Integer> query = playListDao.queryBuilder();
+        try {
+            query.where().like(Playlist.COLUMN_NAME_EN, "%" + searchQuery + "%");
+            return playListDao.query(query.prepare());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
+
+    public List<Playlist> requestAllPlayLists() {
+        return playListDao.queryForAll();
     }
 
 }

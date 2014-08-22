@@ -6,6 +6,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "songs")
 public class Song {
     @DatabaseField(id = true)
+    private int id;
+    @DatabaseField()
     private String objectId;
     @DatabaseField
     private String song_name;
@@ -18,7 +20,9 @@ public class Song {
     @DatabaseField
     private String artist_id;
     @DatabaseField
-    private Integer rate;
+    private Integer likes;
+    @DatabaseField
+    private Integer dislikes;
 
     public Song() {
     }
@@ -67,12 +71,8 @@ public class Song {
         this.artist_id = artist_id;
     }
 
-    public Integer getRate() {
-        return rate;
-    }
-
-    public void setRate(Integer rate) {
-        this.rate = rate;
+    public float getRate() {
+        return (float) likes/(float)dislikes;
     }
 
 }

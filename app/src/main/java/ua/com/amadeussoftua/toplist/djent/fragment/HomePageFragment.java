@@ -42,6 +42,7 @@ public class HomePageFragment extends ListFragment {
         getApplication().getNetworkManager().requestAllPlayLists();
         getApplication().getNetworkManager().requestAllArtists();
         getApplication().getNetworkManager().requestAllSongs();
+
     }
 
 }

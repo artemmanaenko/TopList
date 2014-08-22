@@ -77,8 +77,9 @@ public class LeftMenuFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.left_menu_home),
+                        getString(R.string.left_menu_all_playlists),
                         getString(R.string.left_menu_favorites),
-                        getString(R.string.left_menu_send_your_list),
+                        getString(R.string.left_menu_send_your_list)
                 });
     }
 
@@ -113,7 +114,7 @@ public class LeftMenuFragment extends Fragment {
         this.drawerLayout.setDrawerListener(createDrawerToggle());
     }
 
-    private ActionBarDrawerToggle createDrawerToggle(){
+    private ActionBarDrawerToggle createDrawerToggle() {
         drawerToggle = new ActionBarDrawerToggle(
                 getActivity(),
                 LeftMenuFragment.this.drawerLayout,

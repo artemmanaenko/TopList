@@ -1,6 +1,20 @@
 <resources>
+
+    <dimen name="H1">20sp</dimen>
+    <dimen name="H2">18sp</dimen>
+    <dimen name="H3">16sp</dimen>
+    <dimen name="H4">14sp</dimen>
+    <dimen name="H5">12sp</dimen>
+    <dimen name="H6">10sp</dimen>
+
+    <dimen name="Padding.Widget">5dp</dimen>
+    <dimen name="Padding.Small">10dp</dimen>
+
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="list_item_simple_image_size">60dp</dimen>
+    <dimen name="search_controls_panel_height">24dp</dimen>
+    <integer name="search_grid_column_count">2</integer>
 </resources>

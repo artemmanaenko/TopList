@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/title_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/row_title"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Recently played"
+            android:layout_alignParentTop="true"
+            android:textStyle="normal"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="MORE"
+            android:textSize="12dp"
+            android:textColor="#fff"
+            android:background="#ffbb33"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/items_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/title_root"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp">
+
+        <include layout="@layout/item_album_extended"/>
+
+        <include layout="@layout/item_album_extended"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

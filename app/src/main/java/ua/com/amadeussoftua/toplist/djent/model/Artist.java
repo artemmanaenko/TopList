@@ -8,6 +8,8 @@ import java.util.Date;
 @DatabaseTable(tableName = "artists")
 public class Artist {
     @DatabaseField(id = true)
+    private int id;
+    @DatabaseField()
     private String objectId;
     @DatabaseField
     private String link_play;
@@ -24,7 +26,9 @@ public class Artist {
     @DatabaseField
     private String image_url;
     @DatabaseField
-    private Integer rate;
+    private Integer likes;
+    @DatabaseField
+    private Integer dislikes;
 
     public Artist() {
     }
@@ -41,12 +45,8 @@ public class Artist {
         this.image_url = image_url;
     }
 
-    public Integer getRate() {
-        return rate;
-    }
-
-    public void setRate(Integer rate) {
-        this.rate = rate;
+    public float getRate() {
+        return (float) likes/(float)dislikes;
     }
 
     public String getObjectId() {

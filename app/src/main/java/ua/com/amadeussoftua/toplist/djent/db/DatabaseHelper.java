@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import ua.com.amadeussoftua.toplist.djent.Debug;
 import ua.com.amadeussoftua.toplist.djent.TopListApplication;
 import ua.com.amadeussoftua.toplist.djent.model.Artist;
+import ua.com.amadeussoftua.toplist.djent.model.FavoriteItem;
 import ua.com.amadeussoftua.toplist.djent.model.Playlist;
 import ua.com.amadeussoftua.toplist.djent.model.Song;
 
@@ -31,13 +32,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private PlayListDao playListDao;
     private ArtistsDao artistsDao;
     private SongsDao songsDao;
+    private FavoriteDao favoritesDao;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         application = (TopListApplication) context.getApplicationContext();
-        playListDao = createPlayListDao();
-        artistsDao = createArtistsDao();
-        songsDao = createSongsDao();
     }
 
     @Override
@@ -47,6 +46,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Playlist.class);
             TableUtils.createTable(connectionSource, Song.class);
             TableUtils.createTable(connectionSource, Artist.class);
+            TableUtils.createTable(connectionSource, FavoriteItem.class);
         } catch (SQLException e) {
             Debug.logE(TAG, "Can't create database");
             throw new RuntimeException(e);
@@ -62,6 +62,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void close() {
         super.close();
         playListDao = null;
+        artistsDao = null;
+        songsDao = null;
+        favoritesDao = null;
     }
 
     private PlayListDao createPlayListDao() {
@@ -79,15 +82,32 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return new SongsDao(application, dao);
     }
 
+    private FavoriteDao createFavoritesDao() {
+        RuntimeExceptionDao<FavoriteItem, Integer> dao = getRuntimeExceptionDao(FavoriteItem.class);
+        return new FavoriteDao(application, dao);
+    }
+
     public PlayListDao getPlayListDao() {
+        if (playListDao == null)
+            playListDao = createPlayListDao();
         return playListDao;
     }
 
     public ArtistsDao getArtistsDao() {
+        if (artistsDao == null)
+            artistsDao = createArtistsDao();
         return artistsDao;
     }
 
     public SongsDao getSongsDao() {
+        if (songsDao == null)
+            songsDao = createSongsDao();
         return songsDao;
+    }
+
+    public FavoriteDao getFavoritesDao() {
+        if (favoritesDao == null)
+            favoritesDao = createFavoritesDao();
+        return favoritesDao;
     }
 }
